@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown, Copy, Check } from "lucide-react";
 import { useState } from "react";
 
-const CONTRACT_ADDRESS = "PASTE_YOUR_TOKEN_CONTRACT_ADDRESS_HERE";
+const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ?? "";
 
 export default function BroadcastIntro() {
   const [copied, setCopied] = useState(false);
@@ -37,7 +37,6 @@ export default function BroadcastIntro() {
           loop
           muted
           playsInline
-          poster="/assets/catface/catface-planet-logo.png"
         >
           <source src="/assets/catface/catface-planet-ident.mp4" type="video/mp4" />
         </video>
