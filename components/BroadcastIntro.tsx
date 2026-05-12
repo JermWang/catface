@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown, Copy, Check } from "lucide-react";
 import { useState } from "react";
+import { CATFACE_TAGLINE } from "@/lib/copy";
 
 const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ?? "";
 
@@ -82,7 +83,7 @@ export default function BroadcastIntro() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
-          All animals. All cats. Even the planet.
+          {CATFACE_TAGLINE}
         </motion.p>
 
         {/* Token contract address – glassmorphic pill */}

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
+import { CATFACE_TAGLINE } from "@/lib/copy";
 
 export default function CatfaceHero() {
   const { scrollYProgress } = useScroll();
@@ -56,7 +57,7 @@ export default function CatfaceHero() {
             viewport={{ once: true }}
             transition={{ delay: 0.16 }}
           >
-            All animals. All cats.
+            {CATFACE_TAGLINE}
           </motion.p>
         </div>
 

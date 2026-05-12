@@ -33,7 +33,7 @@ export default function WorldTransition() {
             Sunrise over the reserve
           </h2>
           <p className="mt-5 max-w-xl font-body text-xl uppercase tracking-[.06em] text-bone/78 md:text-2xl">
-            Field footage from the world's least necessary ecosystem.
+            Field footage from the world&apos;s least necessary ecosystem.
           </p>
         </div>
       </div>

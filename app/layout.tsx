@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Anton, Oswald } from "next/font/google";
+import { CATFACE_TAGLINE } from "@/lib/copy";
 import "./globals.css";
 
 const anton = Anton({
@@ -13,16 +14,24 @@ const oswald = Oswald({
   variable: "--font-oswald"
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000");
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "CATFACE Planet",
-  description:
-    "Animal Planet, but corrupted by cats. A surreal broadcast field guide for CATFACE.",
+  description: CATFACE_TAGLINE,
   icons: {
     icon: "/catplanet.png"
   },
   openGraph: {
     title: "CATFACE Planet",
-    description: "All animals. All cats. Even the planet.",
+    description: CATFACE_TAGLINE,
     siteName: "CATFACE Planet",
     images: [
       {
@@ -37,7 +46,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "CATFACE Planet",
-    description: "All animals. All cats. Even the planet.",
+    description: CATFACE_TAGLINE,
     images: ["/catface planet.png"],
     creator: "@catfacesolana"
   }
