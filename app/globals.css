@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  background: #050705;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background: #050705;
+  color: #f3f1e8;
+  font-family: var(--font-oswald), Arial, sans-serif;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: #7cb662;
+  color: #050705;
+}
+
+/* ── Subtle organic grain overlay ── */
+.noise-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  opacity: 0.04;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ── Organic masks (kept from original) ── */
+.organic-mask {
+  clip-path: polygon(7% 7%, 89% 0, 98% 18%, 94% 82%, 77% 100%, 15% 94%, 0 74%, 4% 22%);
+}
+
+.soft-animal-mask {
+  -webkit-mask-image:
+    radial-gradient(ellipse at 50% 52%, #000 0 50%, rgba(0, 0, 0, 0.84) 62%, transparent 78%),
+    linear-gradient(#000, #000);
+  mask-image:
+    radial-gradient(ellipse at 50% 52%, #000 0 50%, rgba(0, 0, 0, 0.84) 62%, transparent 78%),
+    linear-gradient(#000, #000);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.sighting-mask {
+  clip-path: polygon(10% 6%, 72% 0, 97% 24%, 92% 74%, 68% 98%, 18% 91%, 0 61%, 4% 24%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 0 58%, rgba(0, 0, 0, 0.74) 70%, transparent 86%);
+  mask-image: radial-gradient(ellipse at 50% 50%, #000 0 58%, rgba(0, 0, 0, 0.74) 70%, transparent 86%);
+}
+
+.specimen-cut {
+  filter: contrast(1.05) saturate(1.05);
+  mix-blend-mode: normal;
+}
+
+/* ── Nature terrain elements ── */
+.terrain-shadow {
+  box-shadow:
+    0 50px 90px rgba(0, 0, 0, 0.62),
+    inset 0 -48px 70px rgba(5, 7, 5, 0.44);
+}
+
+.grassline {
+  pointer-events: none;
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1px;
+  height: clamp(100px, 16vw, 200px);
+  z-index: 28;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23112a0d' stop-opacity='0.9'/%3E%3Cstop offset='1' stop-color='%23050705'/%3E%3C/linearGradient%3E%3ClinearGradient id='g2' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%230d1f09' stop-opacity='0.85'/%3E%3Cstop offset='1' stop-color='%23050705'/%3E%3C/linearGradient%3E%3ClinearGradient id='g3' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23163a10'/%3E%3Cstop offset='1' stop-color='%23050705'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0 200 L0 130 Q15 90 18 60 Q20 90 22 125 Q30 80 33 45 Q35 80 38 120 Q50 95 54 70 Q56 100 58 125 Q68 75 72 40 Q74 80 76 115 Q88 90 92 55 Q94 88 96 120 Q108 85 112 50 Q114 85 116 118 Q128 78 132 35 Q134 78 137 115 Q148 88 152 62 Q154 90 156 122 Q168 82 172 48 Q174 82 177 118 Q186 72 190 30 Q192 72 195 110 Q208 85 212 55 Q214 88 216 120 Q228 80 232 45 Q234 82 237 118 Q248 74 252 38 Q254 78 257 115 Q268 85 272 58 Q274 88 276 122 Q288 78 292 42 Q294 80 297 118 Q308 72 312 32 Q314 75 317 112 Q328 82 332 52 Q334 85 336 120 Q348 78 352 40 Q354 80 357 116 Q368 74 372 35 Q374 78 377 115 Q388 82 392 48 Q394 85 396 120 Q408 76 412 38 Q414 78 417 115 Q428 84 432 55 Q434 88 436 122 Q448 80 452 42 Q454 82 457 118 Q468 74 472 30 Q474 76 477 112 Q488 82 492 50 Q494 85 497 120 Q508 78 512 40 Q514 80 517 116 Q528 72 532 28 Q534 74 537 110 Q548 80 552 48 Q554 84 557 118 Q568 76 572 38 Q574 80 577 115 Q588 84 592 52 Q594 86 597 122 Q608 78 612 42 Q614 82 617 118 Q628 74 632 32 Q634 78 637 112 Q648 82 652 48 Q654 85 657 120 Q668 76 672 36 Q674 80 677 115 Q688 72 692 28 Q694 76 697 110 Q708 80 712 45 Q714 84 717 118 Q728 78 732 40 Q734 82 737 116 Q748 74 752 32 Q754 78 757 112 Q768 82 772 48 Q774 86 777 120 Q788 78 792 38 Q794 82 797 118 Q808 74 812 30 Q814 78 817 112 Q828 84 832 52 Q834 86 837 122 Q848 78 852 42 Q854 82 857 118 Q868 76 872 36 Q874 80 877 115 Q888 72 892 28 Q894 76 897 108 Q908 80 912 45 Q914 84 917 118 Q928 78 932 40 Q934 82 937 116 Q948 74 952 35 Q954 78 957 114 Q968 82 972 48 Q974 86 977 120 Q988 76 992 38 Q994 80 997 115 Q1008 74 1012 32 Q1014 78 1017 112 Q1028 82 1032 50 Q1034 85 1037 120 Q1048 78 1052 42 Q1054 82 1057 118 Q1068 74 1072 34 Q1074 78 1077 114 Q1088 82 1092 48 Q1094 86 1097 120 Q1108 76 1112 36 Q1114 80 1117 115 Q1128 72 1132 28 Q1134 76 1137 110 Q1148 80 1152 45 Q1154 84 1157 118 Q1168 78 1172 40 Q1174 82 1177 116 Q1188 74 1192 32 Q1194 78 1197 112 L1200 130 L1200 200Z' fill='url(%23g1)'/%3E%3Cpath d='M0 200 L0 145 Q12 105 15 75 Q17 108 20 140 Q35 100 38 68 Q40 102 43 135 Q58 108 62 82 Q64 110 67 138 Q80 95 84 60 Q86 98 89 132 Q105 102 108 72 Q110 105 113 136 Q130 98 134 65 Q136 100 139 134 Q155 105 158 78 Q160 108 163 138 Q178 95 182 62 Q184 98 187 132 Q205 100 208 70 Q210 102 213 135 Q230 105 234 78 Q236 108 239 138 Q255 95 258 60 Q260 98 263 130 Q280 102 284 72 Q286 105 289 136 Q305 98 308 65 Q310 100 313 134 Q330 105 334 78 Q336 108 339 138 Q355 95 358 62 Q360 98 363 132 Q380 100 384 70 Q386 102 389 135 Q405 105 408 78 Q410 108 413 138 Q430 95 434 60 Q436 98 439 130 Q455 102 458 72 Q460 105 463 136 Q480 98 484 65 Q486 100 489 134 Q505 105 508 78 Q510 108 513 138 Q530 95 534 62 Q536 98 539 132 Q555 100 558 70 Q560 102 563 135 Q580 105 584 78 Q586 108 589 138 Q605 95 608 60 Q610 98 613 130 Q630 102 634 72 Q636 105 639 136 Q655 98 658 65 Q660 100 663 134 Q680 105 684 78 Q686 108 689 138 Q705 95 708 62 Q710 98 713 132 Q730 100 734 70 Q736 102 739 135 Q755 105 758 78 Q760 108 763 138 Q780 95 784 60 Q786 98 789 130 Q805 102 808 72 Q810 105 813 136 Q830 98 834 65 Q836 100 839 134 Q855 105 858 78 Q860 108 863 138 Q880 95 884 62 Q886 98 889 132 Q905 100 908 70 Q910 102 913 135 Q930 105 934 78 Q936 108 939 138 Q955 95 958 60 Q960 98 963 130 Q980 102 984 72 Q986 105 989 136 Q1005 98 1008 65 Q1010 100 1013 134 Q1030 105 1034 78 Q1036 108 1039 138 Q1055 95 1058 62 Q1060 98 1063 132 Q1080 100 1084 70 Q1086 102 1089 135 Q1105 105 1108 78 Q1110 108 1113 138 Q1130 95 1134 60 Q1136 98 1139 130 Q1155 102 1158 72 Q1160 105 1163 136 Q1180 98 1184 65 Q1186 100 1189 134 L1200 145 L1200 200Z' fill='url(%23g2)'/%3E%3Cpath d='M0 200 L0 160 Q20 130 24 110 Q26 135 30 155 Q55 125 60 100 Q62 130 66 152 Q90 128 94 108 Q96 132 100 155 Q125 122 130 98 Q132 128 136 152 Q160 130 164 112 Q166 134 170 156 Q195 125 200 100 Q202 130 206 154 Q230 128 234 108 Q236 132 240 155 Q265 122 270 98 Q272 128 276 152 Q300 130 304 112 Q306 134 310 156 Q335 125 340 100 Q342 130 346 154 Q370 128 374 108 Q376 132 380 155 Q405 122 410 98 Q412 128 416 152 Q440 130 444 112 Q446 134 450 156 Q475 125 480 100 Q482 130 486 154 Q510 128 514 108 Q516 132 520 155 Q545 122 550 98 Q552 128 556 152 Q580 130 584 112 Q586 134 590 156 Q615 125 620 100 Q622 130 626 154 Q650 128 654 108 Q656 132 660 155 Q685 122 690 98 Q692 128 696 152 Q720 130 724 112 Q726 134 730 156 Q755 125 760 100 Q762 130 766 154 Q790 128 794 108 Q796 132 800 155 Q825 122 830 98 Q832 128 836 152 Q860 130 864 112 Q866 134 870 156 Q895 125 900 100 Q902 130 906 154 Q930 128 934 108 Q936 132 940 155 Q965 122 970 98 Q972 128 976 152 Q1000 130 1004 112 Q1006 134 1010 156 Q1035 125 1040 100 Q1042 130 1046 154 Q1070 128 1074 108 Q1076 132 1080 155 Q1105 122 1110 98 Q1112 128 1116 152 Q1140 130 1144 112 Q1146 134 1150 156 Q1175 125 1180 100 Q1182 130 1186 154 L1200 160 L1200 200Z' fill='url(%23g3)'/%3E%3Crect y='170' width='1200' height='30' fill='%23050705'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.leaf-vignette {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 22;
+  background:
+    radial-gradient(ellipse at 4% 20%, rgba(12, 41, 9, 0.9) 0 8%, transparent 18%),
+    radial-gradient(ellipse at 96% 10%, rgba(11, 36, 8, 0.82) 0 10%, transparent 22%),
+    radial-gradient(ellipse at 88% 88%, rgba(18, 47, 13, 0.9) 0 14%, transparent 28%);
+  filter: blur(10px);
+}
+
+/* ── Organic section shapes ── */
+.living-stage {
+  border-radius: 1.5rem;
+  box-shadow: inset 0 0 0 1px rgba(124, 182, 98, 0.1), 0 45px 120px rgba(0, 0, 0, 0.55);
+}
+
+.habitat-remote-organic {
+  border-radius: 999px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.34);
+}
+
+/* ── Organic wave dividers ── */
+.organic-wave-top {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  line-height: 0;
+}
+
+.organic-wave-bottom {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  line-height: 0;
+}
+
+/* ── Creature float animations with varied timing ── */
+.creature-float-1 { animation: creatureFloat1 6s ease-in-out infinite; }
+.creature-float-2 { animation: creatureFloat2 7s ease-in-out infinite; }
+.creature-float-3 { animation: creatureFloat3 5.5s ease-in-out infinite; }
+.creature-float-4 { animation: creatureFloat4 8s ease-in-out infinite; }
+.creature-float-5 { animation: creatureFloat5 6.5s ease-in-out infinite; }
+.creature-float-6 { animation: creatureFloat6 7.5s ease-in-out infinite; }
+.creature-float-7 { animation: creatureFloat7 5s ease-in-out infinite; }
+
+@keyframes creatureFloat1 { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-16px) } }
+@keyframes creatureFloat2 { 0%,100% { transform: translateY(0) rotate(0deg) } 50% { transform: translateY(-12px) rotate(1deg) } }
+@keyframes creatureFloat3 { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-18px) } }
+@keyframes creatureFloat4 { 0%,100% { transform: translateY(0) rotate(0deg) } 50% { transform: translateY(-10px) rotate(-0.5deg) } }
+@keyframes creatureFloat5 { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-14px) } }
+@keyframes creatureFloat6 { 0%,100% { transform: translateY(0) rotate(0deg) } 50% { transform: translateY(-11px) rotate(0.7deg) } }
+@keyframes creatureFloat7 { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-20px) } }
+
+/* ── Canvas ecosystem support ── */
+.ecosystem-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.ecosystem-creatures {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+}
+
+.creature-sprite {
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), filter 0.5s ease;
+  will-change: transform;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.5));
+}
+
+.creature-sprite:hover {
+  transform: scale(1.08) translateY(-8px);
+  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 30px rgba(124, 182, 98, 0.2));
+  z-index: 50 !important;
+}
+
+.creature-label {
+  position: absolute;
+  left: 50%;
+  top: -2.5rem;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: rgba(5, 7, 5, 0.8);
+  border: 1px solid rgba(124, 182, 98, 0.3);
+  backdrop-filter: blur(12px);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #f3f1e8;
+  opacity: 0;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(6px);
+}
+
+.creature-sprite:hover .creature-label {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Organic glow spot ── */
+.nature-glow {
+  pointer-events: none;
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.35;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* ── Scrollbar styling ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050705;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 182, 98, 0.25);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 182, 98, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
